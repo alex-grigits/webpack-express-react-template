@@ -1,0 +1,29 @@
+body {
+  background-color: rgb(1, 1, 57);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+  color: rgb(3, 207, 238);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+p {
+  color: #fff;
+}
+
+button {
+  padding: 4px 16px;
+  border-radius: 8px;
+  background-color: rgb(17, 64, 64);
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  transition: box-shadow 0.3s ease-out;
+
+  &:hover {
+    box-shadow: 0 0 16px rgba(56, 162, 255, 0.7);
+    transition: box-shadow 0.2s ease-in;
+    cursor: pointer;
+  }
+}

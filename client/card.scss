@@ -1,0 +1,18 @@
+$primary-color: #3498db;
+
+h3 {
+  color: wheat;
+}
+
+.cardButton {
+  background-color: $primary-color;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.cardButton:hover {
+  background-color: darken($primary-color, 10%);
+}
