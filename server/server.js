@@ -27,8 +27,20 @@ app.get('/api/example', (req, res) => {
 });
 
 // Render the React app on the root path
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
+// });
+app.get('*', (req, res, next) => {
+  const filename = path.join(compiler.outputPath, 'index.html');
+
+  compiler.outputFileSystem.readFile(filename, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+    res.set('content-type', 'text/html');
+    res.send(result);
+    res.end();
+  });
 });
 
 app.listen(PORT, () => {
