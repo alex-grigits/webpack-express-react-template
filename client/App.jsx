@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Card } from './Card';
 
-import './styles.module.css';
+import './styles.css';
 
 const App = () => {
   const [message, setMessage] = useState('');
@@ -28,7 +28,7 @@ const App = () => {
     <div>
       <h1>Hello, React, Webpack and Express!!</h1>
       <p>{message}</p>
-      <button onClick={() => setCount((prev) => prev + 1)}>
+      <button className="button" onClick={() => setCount((prev) => prev + 1)}>
         Count {count}
       </button>
       <div>

@@ -4,7 +4,7 @@ h3 {
   color: wheat;
 }
 
-.cardButton {
+.card-button {
   background-color: $primary-color;
   color: white;
   padding: 8px 20px;
@@ -13,6 +13,11 @@ h3 {
   cursor: pointer;
 }
 
-.cardButton:hover {
+.primary-button {
+  background-color: rgb(255, 85, 0);
+  color: rgb(32, 11, 11);
+}
+
+.card-button:hover {
   background-color: darken($primary-color, 10%);
 }
