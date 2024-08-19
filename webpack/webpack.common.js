@@ -1,6 +1,7 @@
 const path = require('node:path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   output: {
@@ -44,14 +45,45 @@ module.exports = {
         },
       },
       {
-        test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.s?css$/,
+        oneOf: [
+          {
+            test: /\.module\.s?css$/,
+            use: [
+              MiniCssExtractPlugin.loader,
+              {
+                loader: 'css-loader',
+                options: {
+                  esModule: true,
+                  importLoaders: 1,
+                  modules: {
+                    localIdentName: '[name]__[local]___[hash:base64:5]',
+                    namedExport: true,
+                  },
+                },
+              },
+              'sass-loader',
+              'postcss-loader',
+            ],
+          },
+          {
+            use: [
+              MiniCssExtractPlugin.loader,
+              'css-loader',
+              'sass-loader',
+              'postcss-loader',
+            ],
+          },
+        ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', 'client', 'index.html'),
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
     }),
   ],
   // stats: 'errors-only',
