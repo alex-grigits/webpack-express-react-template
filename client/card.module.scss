@@ -4,6 +4,24 @@ h3 {
   color: wheat;
 }
 
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgb(145, 81, 4);
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .expandable {
+    background-color: #3498db;
+    pointer-events: auto;
+  }
+}
+
 .card-button {
   background-color: $primary-color;
   color: white;

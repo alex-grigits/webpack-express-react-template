@@ -1,39 +1,54 @@
 import React, { useEffect, useState } from 'react';
 
 import { Card } from './Card';
+import DraggableList from './Draggable.component';
 
 import './styles.css';
 
 const App = () => {
-  const [message, setMessage] = useState('');
-  const [count, setCount] = useState(0);
+  const items = [
+    <Card key={1} title="test 1" desc="description 1" sortData="sort data 1">
+      <div className="flex">
+        <div>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod iure
+          eaque voluptatibus ea tempora, unde enim suscipit saepe. A, eos.
+        </div>
+        <div style={{ display: 'flex', padding: '30px' }}>
+          <DraggableList>
+            <p key={11}>Item 1</p>
+            <p key={12}>Item 2</p>
+            <p key={13}>Item 3</p>
+            <p key={14}>Item 4</p>
+          </DraggableList>
+        </div>
+      </div>
+    </Card>,
+    <Card key={2} title="test 2" desc="description 2" sortData="sort data 2">
+      <div className="flex">
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
+          vero.
+        </div>
+        <div style={{ display: 'flex', padding: '30px' }}>
+          <DraggableList>
+            <p key={21}>Item 1</p>
+            <p key={22}>Item 2</p>
+          </DraggableList>
+        </div>
+      </div>
+    </Card>,
+  ];
 
-  useEffect(() => {
-    const fetchMessage = async () => {
-      const url = '/api/example';
-
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log({ data });
-        setMessage(data.message);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchMessage();
-  }, []);
+  const onSort = (list) => {
+    console.log({ list });
+  };
 
   return (
     <div>
-      <h1>Hello, React, Webpack and Express!!</h1>
-      <p>{message}</p>
-      <button className="button" onClick={() => setCount((prev) => prev + 1)}>
-        Count {count}
-      </button>
-      <div>
-        <Card />
-      </div>
+      <h1>React custom dnd</h1>
+      <DraggableList onSort={onSort} dynamic>
+        {items.map((item) => item)}
+      </DraggableList>
     </div>
   );
 };

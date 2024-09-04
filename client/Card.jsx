@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import SVG from './icon.svg';
 import * as styles from './card.module.scss';
 
-export const Card = () => {
-  // console.log({ styles });
+export const Card = ({ title, desc, children, dragZone }) => {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <div>
-      <SVG width="100" height="100" viewBox="0 0 100 100" />
-      <h3>Card title example</h3>
-      <p>Card description</p>
-      <button className={styles['primary-button']}>Submit12</button>
-    </div>
+    <>
+      <div className={styles.card}>
+        <div className={styles.info}>
+          <h3>{title}</h3>
+          <p>{desc}</p>
+          <button
+            className={styles['primary-button']}
+            onClick={() => setExpanded((v) => !v)}
+          >
+            {expanded ? 'Close' : 'Open'}
+          </button>
+          {dragZone}
+        </div>
+        {expanded && <div className={styles.expandable}>{children}</div>}
+      </div>
+    </>
   );
 };
