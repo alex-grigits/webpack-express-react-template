@@ -1,13 +1,14 @@
 const express = require('express');
 const path = require('path');
 
+const webpack = require('webpack');
+const webpackConfig = require('../webpack/webpack.dev.js');
+const compiler = webpack(webpackConfig);
+
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 if (process.env.NODE_ENV !== 'production') {
-  const webpack = require('webpack');
-  const webpackConfig = require('../webpack/webpack.dev.js');
-  const compiler = webpack(webpackConfig);
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
 

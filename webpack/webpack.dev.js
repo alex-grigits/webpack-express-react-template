@@ -25,29 +25,6 @@ module.exports = merge(commonConfig, {
           },
         },
       },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              esModule: true,
-              importLoaders: 1,
-              modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]',
-                namedExport: true,
-              },
-            },
-          },
-        ],
-        include: /\.module\.css$/,
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-        exclude: /\.module\.css$/,
-      },
     ],
   },
   plugins: [
@@ -56,6 +33,8 @@ module.exports = merge(commonConfig, {
   ],
   devServer: {
     historyApiFallback: true,
-    port: 3000,
+    headers: {
+      'Cache-Control': 'no-store',
+    },
   },
 });
